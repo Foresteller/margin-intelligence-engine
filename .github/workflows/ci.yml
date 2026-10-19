@@ -78,9 +78,8 @@ jobs:
       - name: Prepare environment
         run: |
           cp .env.example .env
-          php artisan key:generate
-          php artisan config:clear
-          php artisan config:show app
+          php artisan key:generate --force
+          echo "APP_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2)" >> $GITHUB_ENV
 
       - name: Check code style
         run: ./vendor/bin/pint --test
