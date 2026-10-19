@@ -79,6 +79,8 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
+          php artisan config:clear
+          php artisan config:show app
 
       - name: Check code style
         run: ./vendor/bin/pint --test
